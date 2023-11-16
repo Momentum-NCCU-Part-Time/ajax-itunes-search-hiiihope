@@ -25,46 +25,45 @@ searchForm.addEventListener("submit", (e) => {
     })
 
      .then((parsedJson) => {
-        const resultsArray = parsedJson.results;
-        console.log(resultsArray)
-        // console.log(parsedJson);
-        let res = document.createElement('div');
-        res.innerText = parsedJson.results[''],
-        searchResults.appendchild(res);
-     for (let i = 0; i< resultsArray.length; i++){
-// created div/for each item needed artists name, albutm, track number and whatever parameters.
-    }
-
-    let searchCard = document.createElement("div");
-    searchCard.classList.add("card")
-    searchResults.appendChild(searchCard);
-
-    const trackName = resultsArray[i].trackName;
-    const songTitle = document.createElement("h3");
-    songTitle.innerText = trackName;
-    songCard.appendChild(songTitle);
-    
-    const trackNumber = resultsArray[i].trackNumber;
-    const trackList = document.createElement("h3");
-    trackList.innerText = trackNumber;
-    songCard.appendChild(songTitle);
-
-    const imageBox= document.createElement("div");
-    imageBox.classList.add("Album");
-    imageBox.src = resultsArray[i].artworkUrl100;
-    songCard.appendChild(songTitle);
-
-
-        if(res.length === 0) {
+         const resultsArray = parsedJson.results;
+         console.log(resultsArray)
+         // console.log(parsedJson);
+         results.innerHTML = ""
+         if(resultsArray.length === 0) {
+             
+         let errorMessage = document.createElement('h2')
+          errorMessage.innerText = "No results found"
+          results.appendChild(errorMessage);
+        
+         } else {
+             for (let i = 0; i< resultsArray.length; i++){
+                
+                let searchCard = document.createElement("div");
+         searchCard.classList.add("card")
+         
+         const trackName = resultsArray[i].trackName;
+         const songTitle = document.createElement("h3");
+         songTitle.innerText = trackName;
+         searchCard.appendChild(songTitle);
+         
+         const trackNumber = resultsArray[i].trackNumber;
+         const trackList = document.createElement("h3");
+         trackList.innerText = trackNumber;
+         searchCard.appendChild(trackList);
+         
+         const imageBox = document.createElement("div");
+         imageBox.classList.add("album");
+         imageBox.src = resultsArray[i].artworkUrl100;
+         searchCard.appendChild(imageBox);
+         // created div/for each item needed artists name, albutm, track number and whatever parameters.
+          results.appendChild(searchCard);
+                }
+         }
+        
+            })
             
-        let errorMessage = document.createElement('h2')
-         errorMessage.innerText = "No results found"
-         results.appendChild(errorMessage);
-        }
-     })
- 
 
-      return res.map(results => {
-        let previewURL
+
+ 
       })
-    })
+    

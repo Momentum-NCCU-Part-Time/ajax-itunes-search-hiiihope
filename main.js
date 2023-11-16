@@ -10,34 +10,61 @@ searchForm.addEventListener("submit", (e) => {
    let searchBox = document.getElementById('searchBox')
    console.log(searchBox.value)
 
-    fetch(musicUrl + value, {
+    fetch(musicUrl + searchBox.value, {
         method: "GET",
         headers: {"Content-Type": "application/json"}
     
     })
     
         
-    .then((response)) => {
-                if (response.status === 200){
+    .then((response) => {
+                if (response.status === 200) {
             return response.json();
         }
-        else {console.log("Invalid Request")}
+        else {throw new Error("No results found") }
     })
 
-     .then((parsedJson)) => {
-        console.log(parsedJson);
+     .then((parsedJson) => {
+        const resultsArray = parsedJson.results;
+        console.log(resultsArray)
+        // console.log(parsedJson);
         let res = document.createElement('div');
         res.innerText = parsedJson.results[''],
         searchResults.appendchild(res);
-     }
+     for (let i = 0; i< resultsArray.length; i++){
+// created div/for each item needed artists name, albutm, track number and whatever parameters.
+    }
+
+    let searchCard = document.createElement("div");
+    searchCard.classList.add("card")
+    searchResults.appendChild(searchCard);
+
+    const trackName = resultsArray[i].trackName;
+    const songTitle = document.createElement("h3");
+    songTitle.innerText = trackName;
+    songCard.appendChild(songTitle);
+    
+    const trackNumber = resultsArray[i].trackNumber;
+    const trackList = document.createElement("h3");
+    trackList.innerText = trackNumber;
+    songCard.appendChild(songTitle);
+
+    const imageBox= document.createElement("div");
+    imageBox.classList.add("Album");
+    imageBox.src = resultsArray[i].artworkUrl100;
+    songCard.appendChild(songTitle);
+
+
+        if(res.length === 0) {
+            
+        let errorMessage = document.createElement('h2')
+         errorMessage.innerText = "No results found"
+         results.appendChild(errorMessage);
+        }
+     })
  
 
-
-
-    // https.proxyitunes.glitch   --- append string to approp url 
-    // console.log()
-    // display.innerText += e.target.innerText
-
-// fetch request, get button, add event listeners, searchfield searchfield results pull information from itunes. audio tag has src and
-
-/* <link rel="icon" type="image/x-icon" href="your-favicon-name.png" /> */
+      return res.map(results => {
+        let previewURL
+      })
+    })

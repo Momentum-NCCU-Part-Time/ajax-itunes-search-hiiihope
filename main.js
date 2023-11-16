@@ -40,6 +40,12 @@ searchForm.addEventListener("submit", (e) => {
                 
                 let searchCard = document.createElement("div");
          searchCard.classList.add("card")
+
+         const audioTag = resultsArray[i].previewUrl;
+         const songTag = document.createElement("audio");
+         songTag.src = audioTag;
+         songTag.controls = true;
+         searchCard.appendChild(songTag);
          
          const trackName = resultsArray[i].trackName;
          const songTitle = document.createElement("h3");
@@ -51,12 +57,12 @@ searchForm.addEventListener("submit", (e) => {
          trackList.innerText = trackNumber;
          searchCard.appendChild(trackList);
          
-         const imageBox = document.createElement("div");
+         const imageBox = document.createElement("img");
          imageBox.classList.add("album");
          imageBox.src = resultsArray[i].artworkUrl100;
          searchCard.appendChild(imageBox);
          // created div/for each item needed artists name, albutm, track number and whatever parameters.
-          results.appendChild(searchCard);
+          results.appendChild(searchCard); 
                 }
          }
         

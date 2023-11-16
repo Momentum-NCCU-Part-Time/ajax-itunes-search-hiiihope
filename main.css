@@ -1,0 +1,15 @@
+#results {
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 10px;
+    background-color: burlywood;
+}
+
+.card {
+    background-color: rgb(240, 28, 28);
+    border-radius: 10rem;
+}
+
+#search-box {
+    width: 20rem;
+}
